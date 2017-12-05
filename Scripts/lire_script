@@ -1,0 +1,21 @@
+#!/bin/bash
+
+tput setaf 117
+
+echo " 《 Lire System 》"
+
+case "$1" in
+  c|console|cons)
+    echo "    Console ❄️   $(tput setaf 239)bundle exec irb -r lire.rb$(tput setaf 117)"
+    bundle exec irb -r ./LIRE.rb
+    ;;
+  s|server|g|guard)
+    echo "    Server (Sinatra + Guard) ❄️   $(tput setaf 239)bundle exec guard$(tput setaf 117)"
+    bundle exec guard
+    ;;
+  "")
+    ;;
+  *)
+    echo "     ❄️  Unknown command :<"
+    ;;
+esac

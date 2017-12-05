@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'colorize'
+
+puts "\nConfirm takein? This will take in dotfiles and scripts from your current directories. [y/n]".green
+
+approval = gets.chomp
+
+@path_script_source = "/Users/Seiyial/SyxApps/Scripts"
+
+case approval.downcase
+when 'y'
+  `git add .`
+  `git stash`
+  puts 'Migrate!'.green
+  FileUtils.copy_entry(@path_script_source,"./Scripts", remove_destination: true)
+else
+end

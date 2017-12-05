@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# SILICONJUNGLES
+
+# case "$1" in
+#   "")
+#     echo "    🌿  SiliconJungles 🌿"
+#     ;;
+#   s|server|svr)
+#     bundle exec hanami server
+#     ;;
+#   db)
+#     HANAMI_ENV=test bundle exec hanami db prepare && bundle exec hanami db prepare
+#     ;;
+#   *)
+#     echo "
+#     ☔️  invalid command"
+#   ;;
+# esac

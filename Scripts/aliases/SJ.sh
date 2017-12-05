@@ -1,0 +1,1 @@
+alias sj='echo "    🌿  SiliconJungles 🌿" && cd ~/SiliconJungles && cd'

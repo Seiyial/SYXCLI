@@ -1,0 +1,1 @@
+alias tco='cd ~/SyxWorks/TCO && tco_script'

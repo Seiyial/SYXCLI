@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Color
+tput setaf 129
+
+# MAIN
+case "$1" in
+  pull)
+    echo "   ☮️  ABO Storefront :: Pull Origin ☮️
+    "
+    git pull origin
+    ;;
+  setup|reset)
+    echo "   ☮️  ABO Storefront :: Welcome ☮️
+    "
+    tput setaf 129
+    mix deps.get
+    clear
+    tput setaf 129
+    echo "   Step 2 :: yarn install
+    "
+    yarn install
+    clear
+    tput setaf 129
+    echo "   Step 3 :: run server
+    "
+    iex -S mix phx.server
+    ;;
+  s|server)
+    echo "   ☮️  ABO Storefront (iex -S mix phx.server) ☮️
+    "
+    iex -S mix phx.server
+    ;;
+  t|test)
+    echo "   ☮️  ABO Storefront (mix test) ☮️
+    "
+    mix test.watch
+    ;;
+  "")
+    echo "   ☮️  ABO Storefront ☮️"
+    ;;
+  *)
+    echo "   ☮️  ABO Storefront ☮️
+
+    ☔️  $(tput setaf 117)invalid command"
+  ;;
+
+esac
+
+tput sgr0

@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Color
+tput setaf 9
+
+# MAIN
+case "$1" in
+  cleanup|clean)
+    echo " 《 ABO Cleaner 》"
+    rm app/assets/javascripts/frontend/app.js && rm app/assets/javascripts/frontend/app.js.map
+    ;;
+  n|npm|yarn|y)
+    echo "   🍁  ABO Admin (1° React.js) 🍁"
+    tput setaf 45
+    yarn start
+    ;;
+  yarntest|yarnt|yt|ytest)
+    echo "   🍁  ABO Admin (yarn test) 🍁"
+    tput setaf 45
+    yarn test
+    ;;
+  railsreset|rs|rr|reset)
+    echo "   🍁  ABO Admin (2° Rails) 🍁"
+    bundle i && clear
+    tput setaf 9 && echo "   🍁  ABO Admin (2° Rails) 🍁
+    💎  Rails Server 💎"
+    tput sgr0 && ./reset.sh
+    ;;
+  s|server|rails)
+    echo "   🍁  ABO Admin (2° Rails) 🍁"
+    clear
+    tput setaf 9 && echo "   🍁  ABO Admin (2° Rails) 🍁
+    💎  Rails Server 💎"
+    rails s
+    ;;
+  sk|sidekiq|sq)
+    echo "   🍁  ABO Admin (4° Sidekiq) 🍁"
+    tput setaf 105
+    bundle exec sidekiq
+    ;;
+  pull|gpod|gpo|p)
+    echo "   🍁  ABO Admin :: Pull Origin 🍁"
+    tput setaf 45
+    git checkout develop
+    git pull origin develop
+    ;;
+  c|console|custom|cons)
+    echo "   🍁  ABO Admin (3° Console) 🍁"
+    echo "   →  [ c to console, cs to console sandbox ]"
+    printf ">> ✡ "
+    wait
+    read INPUT
+    case $INPUT in
+      c|console|cons)
+        clear && echo "   🍁  ABO Admin (3° Console) 🍁
+        💎  Rails Console 💎
+        loading..."
+        tput setaf 117 && rails c
+        ;;
+      cs|sandbox)
+        clear && echo "   🍁  ABO Admin (3° Console) 🍁
+        💎  Rails Console (Sandbox) 💎
+        loading..."
+        tput setaf 117 && rails c --sandbox
+        ;;
+      *)
+        ;;
+    esac
+    ;;
+  "")
+    echo "   🍁  ABO Admin 🍁"
+    ;;
+  *)
+    echo "
+    ☔️  $(tput setaf 117)invalid command"
+  ;;
+esac
+
+tput sgr0

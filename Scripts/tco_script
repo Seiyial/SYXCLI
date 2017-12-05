@@ -1,0 +1,26 @@
+#!/bin/bash
+
+tput setaf 117
+
+echo " 《 Lire2 System 》"
+
+case "$1" in
+  db)
+    # echo "    Console ❄️   $(tput setaf 239)bundle exec irb -r lire.rb$(tput setaf 117)"
+    rails db:drop && rails db:create && rails db:migrate
+    echo "🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀"
+    clear
+    echo "🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀  🍀
+      💎  Rails Server 💎"
+    rails s
+    ;;
+  s|server)
+    # echo "    Server (Sinatra + Guard) ❄️   $(tput setaf 239)bundle exec guard$(tput setaf 117)"
+    rails s
+    ;;
+  "")
+    ;;
+  *)
+    echo "     ❄️  Unknown command :<"
+    ;;
+esac

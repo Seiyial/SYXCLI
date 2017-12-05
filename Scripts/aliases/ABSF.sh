@@ -1,0 +1,1 @@
+alias absf='cd ~/SiliconJungles/abo_storefront && absf_script'

@@ -1,0 +1,1 @@
+alias abo='cd ~/SiliconJungles/abo_admin && abo_script'
