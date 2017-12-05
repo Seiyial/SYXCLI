@@ -10,6 +10,7 @@ case "$1" in
     rm app/assets/javascripts/frontend/app.js && rm app/assets/javascripts/frontend/app.js.map
     ;;
   n|npm|yarn|y)
+    clear
     echo "   🍁  ABO Admin (1° React.js) 🍁"
     tput setaf 45
     yarn start
@@ -19,7 +20,20 @@ case "$1" in
     tput setaf 45
     yarn test
     ;;
-  railsreset|rs|rr|reset)
+  rspec|rs|rsp|spec)
+    clear
+    echo "   🍁  ABO Admin :: Rspec spec/* 🍁"
+    tput setaf 9
+    rspec spec
+    ;;
+  test|t|alltest)
+    echo "   🍁  ABO Admin (yarn test) 🍁"
+    tput setaf 45
+    yarn test
+    clear
+    echo "   🍁  Rspec test 🍁"
+    ;;
+  railsreset|rr|reset)
     echo "   🍁  ABO Admin (2° Rails) 🍁"
     bundle i && clear
     tput setaf 9 && echo "   🍁  ABO Admin (2° Rails) 🍁

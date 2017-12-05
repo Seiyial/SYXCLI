@@ -9,11 +9,7 @@ approval = gets.chomp
 
 @path_script_source = "/Users/Seiyial/SyxApps/Scripts"
 
-case approval.downcase
-when 'y'
-  `git add .`
-  `git stash`
-  puts 'Migrate!'.green
-  FileUtils.copy_entry(@path_script_source,"./Scripts", remove_destination: true)
-else
-end
+abort if approval.downcase != 'y'
+puts 'Migrate!'.green
+FileUtils.copy_entry(@path_script_source,"./Scripts", remove_destination: true)
+puts 'Scripts Migrated'
