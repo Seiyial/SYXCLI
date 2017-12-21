@@ -1,2 +1,2 @@
-alias shqh='cd ~/Syxworks/shq_hanami && shqh_script'
-alias shq='cd ~/Syxworks/SeiyianHQ && shq_script'
+alias shqh='cd ~/SyxWorks/shq_hanami && shqh_script'
+alias shq='cd ~/SyxWorks/SHQ && shq_script'

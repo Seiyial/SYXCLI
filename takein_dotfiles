@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'colorize'
+require_relative './sources.rb'
+
+puts "\nConfirm takein? This will take in dotfiles from your current directories. [y/n]".green
+
+approval = gets.chomp
+
+abort if approval.downcase != 'y'
+puts 'Migrate!'.green
+FileUtils.remove_dir("./Dotfiles")
+Dir.mkdir("./Dotfiles")
+@dotfiles_files.each do |entry|
+  Dir.mkdir("./Dotfiles/#{entry[:savepath]}")
+  FileUtils.copy_entry(@dotfiles_source + entry[:path], "./Dotfiles/#{entry[:savepath]}/#{entry[:savename]}", remove_destination: true)
+end
+
+puts 'Dotfiles Migrated'

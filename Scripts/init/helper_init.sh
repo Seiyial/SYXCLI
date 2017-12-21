@@ -3,6 +3,7 @@
 
 alias zshconfig='subl ~/.zshrc'
 alias scripts='subl ~/SyxApps/Scripts'
+alias syxconfigs='cd ~/SyxStuff/Syx-configfiles'
 
 # Colours
 POWDER_BLUE=$(tput setaf 153)

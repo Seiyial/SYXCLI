@@ -6,17 +6,28 @@ clear
 case "$1" in
   i|install|deps)
     echo "
-      💠  SeiyianHQ 💠  :: INSTALL
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+      💠  SeiyianHQ 💠  :: INSTALL (1) Deps
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
   "
     mix deps.get
+    clear
+    echo "
+      💠  SeiyianHQ 💠  :: INSTALL (2) Yarn Packages
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  "
+    cd ~/SyxWorks/SHQ/apps/Aurora/assets && yarn install
+    clear
+    echo "
+      💠  SeiyianHQ 💠  :: Setup Complete
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  "
     ;;
   s|server|svr)
     echo "
       💠  SeiyianHQ 💠  :: SERVER
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
   "
-    iex -S mix phx.server
+    source .env && iex -S mix phx.server
     ;;
   db|m|migrate)
     clear

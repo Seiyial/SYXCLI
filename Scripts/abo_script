@@ -33,11 +33,11 @@ case "$1" in
     clear
     echo "   🍁  Rspec test 🍁"
     ;;
-  railsreset|rr|reset)
+  railsreset|rr|reset|r)
     echo "   🍁  ABO Admin (2° Rails) 🍁"
     bundle i && clear
     tput setaf 9 && echo "   🍁  ABO Admin (2° Rails) 🍁
-    💎  Rails Server 💎"
+    💎  Rails Server (/Reset.sh) 💎"
     tput sgr0 && ./reset.sh
     ;;
   s|server|rails)

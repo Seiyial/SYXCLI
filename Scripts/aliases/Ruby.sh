@@ -1,5 +1,6 @@
 # Bundle
 alias bx='bundle exec'
+alias bi='bundle install'
 
 # Hanami
 alias ha='bundle exec hanami'

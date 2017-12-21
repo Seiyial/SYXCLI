@@ -5,12 +5,12 @@ tput setaf 129
 
 # MAIN
 case "$1" in
-  pull)
+  pull|p)
     echo "   ☮️  ABO Storefront :: Pull Origin ☮️
     "
     git pull origin
     ;;
-  setup|reset)
+  stp|res|rs|setup|reset)
     echo "   ☮️  ABO Storefront :: Welcome ☮️
     "
     tput setaf 129
