@@ -1,0 +1,317 @@
+#!/bin/bash
+
+NOW=`date +"%Y-%m-%d_T%H%M.%S"`
+POWDER_BLUE=$(tput setaf 153)
+LIME_YELLOW=$(tput setaf 190)
+RESET=$(tput sgr0)
+BOLD=$(tput bold)
+RED=$(tput setaf 1)
+NB=$(tput setaf 117) # niceblue
+TEAL=$(tput setaf 30)
+GREEN=$(tput setaf 40)
+wait
+
+
+# Title
+printf "\n   ${NB} 《 ${TEAL}${BOLD}SYX ${RESET}${NB}LireDB Migration Tool 》${RESET}\n\n"
+wait
+printf "${NB} Where shall we obtain it this time? :)\n  →  [ local / staging / live / custom URL ]\n>> ✡ ${RED}${BOLD} "
+wait
+read FROM
+wait
+
+if [[ "${FROM}" != "local" ]] && [[ "${FROM}" != "staging" ]] && [[ "${FROM}" != "live" ]] && [[ "${FROM}" != "custom URL" ]]
+then
+	printf "${RESET}${NB}\nSorry... I really couldn't get what you said. :(\n Try again? :))\n"
+	wait
+	exit
+fi
+wait
+
+
+
+
+printf "\n${RESET}${NB} Alrite! and where shall it go? :)\n  →  [ local / staging / live / both others / dump only ]\n>> ✡ ${RED}${BOLD} "
+wait
+read TO
+wait
+if [[ "${TO}" != "local" ]] && [[ "${TO}" != "staging" ]] && [[ "${TO}" != "live" ]] && [[ "${TO}" != "both others" ]] && [[ "${TO}" != "dump only" ]]
+then
+	printf "${RESET}${NB}\nSorry... I really couldn't get what you said. :(\n Try again? :))\n"
+	wait
+	exit
+fi
+
+
+wait
+if [[ "${FROM}" == "local" ]]
+then
+	wait
+	printf "${RESET}${NB}\nBacking up Local now! "
+	wait
+	cd ~/SyxWorks/LIRE/Private/Archives/LireDBs
+	wait
+	PGPASSWORD= pg_dump -Fc --no-acl --no-owner -h localhost -U Seiyial liredb > "liredb $NOW local.dump"
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n"
+fi
+
+wait
+if [[ "${FROM}" == "staging" ]]
+then
+	wait
+	printf "${RESET}${NB}\nBacking up Staging now!"
+	wait
+	cd ~/SyxWorks/LIRE/Private/Archives/LireDBs
+	wait
+	heroku pg:backups:capture --remote lirestg
+	wait
+	heroku pg:backups:download --remote lirestg
+	wait
+	mv latest.dump "liredb ${NOW} staging.dump"
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n"
+fi
+
+wait
+if [[ "${FROM}" == "live" ]]
+then
+	wait
+	printf "${RESET}${NB}\nBacking up Live now!"
+	wait
+	cd ~/SyxWorks/LIRE/Private/Archives/LireDBs
+	wait
+	heroku pg:backups:capture --remote lire
+	wait
+	heroku pg:backups:download --remote lire
+	wait
+	mv latest.dump "liredb ${NOW} live.dump"
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n"
+fi
+
+if [[ "${FROM}" == "custom URL" ]]
+then
+	wait
+	printf "${RESET}${NB}\nAlright let me get you your stuff! :)\n Enjoy!"
+	wait
+	cd ~/SyxWorks/LIRE/Private/Archives/LireDBs
+	wait
+	open .
+	wait
+	open "https://drive.google.com/drive/u/0/folders/0B5tEVEzuUhTONmhteWFSOTJSb1U"
+	wait
+	printf "\n\n Alright so what's the URL? :)\n   [ <direct URL> / exit ]\n>> ✡ ${RED}${BOLD} "
+	wait
+	read THEURL
+	wait
+	printf "${RESET}${NB}Alright! Obtaining the file now... ${RESET}\n"
+	wait
+	curl -O "~/SyxWorks/LIRE/Private/Archives/LireDBs/liredb ${NOW} gdrive.dump" "${THEURL}"
+	wait
+fi
+
+# backup to's
+wait
+if [[ "${TO}" == "local" ]]
+then
+	wait
+	printf "${RESET}${NB}\nBacking up Local now! "
+	wait
+	cd ~/SyxWorks/LIRE/Private/Archives/LireDBs
+	wait
+	PGPASSWORD= pg_dump -Fc --no-acl --no-owner -h localhost -U Seiyial liredb > "liredb $NOW local retire.dump"
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n"
+fi
+
+wait
+if [[ "${TO}" == "staging" ]]
+then
+	wait
+	printf "${RESET}${NB}\nBacking up Staging now!"
+	wait
+	cd ~/SyxWorks/LIRE/Private/Archives/LireDBs
+	wait
+	heroku pg:backups:capture --remote lirestg
+	wait
+	heroku pg:backups:download --remote lirestg
+	wait
+	mv latest.dump "liredb ${NOW} staging retire.dump"
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n"
+fi
+
+wait
+if [[ "${TO}" == "live" ]]
+then
+	wait
+	printf "${RESET}${NB}\nBacking up Live now!"
+	wait
+	cd ~/SyxWorks/LIRE/Private/Archives/LireDBs
+	wait
+	heroku pg:backups:capture --remote lire
+	wait
+	heroku pg:backups:download --remote lire
+	wait
+	mv latest.dump "liredb ${NOW} live retire.dump"
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n"
+fi
+
+
+
+
+# end Backup Phase
+
+
+wait
+if [[ ${TO} == "dump only" ]]
+then
+	wait
+	printf "${RESET}${NB}\n  ❇︎ BACKUP DONE ❇︎  ✓\n Keep it up!!! :)\n"
+	wait
+	open ~/SyxWorks/LIRE/Private/Archives/LireDBs
+	wait
+	exit
+fi
+
+
+# continue or not
+wait
+cd ~/SyxWorks/LIRE/Private/Archives/LireDBs
+wait
+open .
+wait
+printf "${RESET}${NB}\nType [ continue ] if you have backed up your files. :) If everything's alright, we can start the migration.\n>> ✡ ${RED}${BOLD} "
+
+wait
+
+
+wait
+read CONTINUEORNOT
+
+
+wait
+if [[ ${CONTINUEORNOT} != "continue" ]]
+then
+	wait
+	printf "${RESET}${NB}\n  ❇︎ EXIT ❇︎  ✓\n Alright! See you again :)"
+	exit
+fi
+
+
+
+# MIGRATIONS
+wait
+if [[ ${FROM} == "local" ]] && [[ "${TO}" == "live" ]]
+then
+	wait
+	printf "${RESET}${NB}\nMigrating now!  CHAKRAWTHHH !! \n\n"
+	wait
+	heroku pg:reset --remote lire --confirm syr-lire
+	wait
+	heroku pg:push liredb DATABASE_URL --remote lire
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n Have a nice day!!"
+fi
+
+wait
+if [[ ${FROM} == "local" ]] && [[ "${TO}" == "staging" ]]
+then
+	wait
+	printf "${RESET}${NB}\nMigrating now!  CHAKRAWTHHH !! \n\n"
+	wait
+	heroku pg:reset --remote lirestg --confirm lire-stagingserver
+	wait
+	heroku pg:push liredb DATABASE_URL --remote lirestg
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n Have a nice day!!"
+fi
+
+wait
+
+if [[ ${FROM} == "live" ]] && [[ "${TO}" == "local" ]]
+	wait
+	printf "${RESET}${NB}\nMigrating now!  CHAKRAWTHHH !! \n\n"
+	wait
+	psql -U Seiyial -d liredb -c "DROP DATABASE liredb;"
+	wait
+	heroku pg:pull DATABASE_URL liredb --remote lire
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n Have a nice day!!"
+fi
+
+wait
+
+if [[ ${FROM} == "local" ]] && [[ "${TO}" == "both others" ]]
+then
+	wait
+	printf "${RESET}${NB}\nMigrating Staging now!  ${BOLD}CHAKRAWTHHH !! ${RESET}\n\n"
+	wait
+	heroku pg:reset --remote lirestg --confirm lire-stagingserver
+	wait
+	heroku pg:push liredb DATABASE_URL --remote lirestg
+	wait
+	printf "${GREEN}Staging Done!! :) ✓${RESET}${NB}\n\nMigrating LIVE now!  ${BOLD}CHAKRAWTHHH !! ${RESET}\n\n"
+	wait
+	heroku pg:reset --remote lire --confirm lire-stagingserver
+	wait
+	heroku pg:push liredb DATABASE_URL --remote lire
+	wait
+	printf "${GREEN}Mass Ops Done!! :) ✓${RESET}${NB}\n Have a nice day!!"
+fi
+wait
+
+
+
+if [[ ${FROM} == "custom URL" ]] && [[ "${TO}" == "live" ]]
+	wait
+	printf "${RESET}${NB}\nMigrating now!  CHAKRAWTHHH !! \n\n"
+	wait
+	heroku pg:backups:restore "${THEURL}"DATABASE_URL --remote lire --confirm
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n Have a nice day!!"
+fi
+wait
+
+# STAG/LIVE TO LOCAL
+if [[ ${FROM} == "staging" ]] && [[ "${TO}" == "local" ]]
+	wait
+	printf "${RESET}${NB}\nMigrating now!  CHAKRAWTHHH !! \n\n"
+	wait
+	psql -U Seiyial -d liredb -c "DROP DATABASE liredb;"
+	wait
+	heroku pg:pull DATABASE_URL liredb --remote lirestg
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n Have a nice day!!"
+	wait
+fi
+wait
+
+
+
+wait
+
+# CURL TO ALL
+if [[ ${FROM} == "custom URL" ]] && [[ "${TO}" == "local" ]]
+	wait
+	printf "${RESET}${NB}\nMigrating now!  CHAKRAWTHHH !! \n\n"
+	wait
+	cd ~/SyxWorks/LIRE/Private/Archives/LireDBs
+	wait
+	pg_restore --verbose --clean --no-acl --no-owner -h localhost -U Seiyial -d liredb "liredb ${NOW} gdrive.dump"
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n Have a nice day!!"
+fi
+wait
+if [[ ${FROM} == "custom URL" ]] && [[ "${TO}" == "staging" ]]
+	wait
+	printf "${RESET}${NB}\nMigrating now!  CHAKRAWTHHH !! \n\n"
+	wait
+	heroku pg:backups:restore "${THEURL}"DATABASE_URL --remote lirestg --confirm
+	wait
+	printf "${GREEN}Done!! :) ✓${RESET}${NB}\n Have a nice day!!"
+fi
+wait
+exit

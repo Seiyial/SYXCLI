@@ -1,1 +1,1 @@
-alias abo='cd ~/SiliconJungles/abo_admin && abo_script'
+alias abo='cd ~/SYX/SJ/abo_admin && abo_script'

@@ -1,1 +1,1 @@
-alias lire='cd ~/SyxWorks/Lire && lire_script'
+alias lire='cd ~/SYX/Core/LIRE && lire_script'

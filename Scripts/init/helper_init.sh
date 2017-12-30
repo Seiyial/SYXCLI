@@ -2,8 +2,8 @@
 # alias active='chmod +x ~/SyxApps/scripts/$1'
 
 alias zshconfig='subl ~/.zshrc'
-alias scripts='subl ~/SyxApps/Scripts'
-alias syxconfigs='cd ~/SyxStuff/Syx-configfiles'
+alias scripts='subl ~/SYX/Apps/Scripts'
+alias syxconfigs='cd ~/SYX/EX/Syx-configfiles'
 
 # Colours
 POWDER_BLUE=$(tput setaf 153)

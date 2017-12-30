@@ -15,6 +15,16 @@ case "$1" in
     tput setaf 45
     yarn start
     ;;
+  yarninstall|yi)
+    clear
+    echo "   🍁  ABO Admin (1° React.js - Yarn Install) 🍁"
+    tput setaf 45
+    yarn install
+    clear
+    echo "   🍁  ABO Admin (1° React.js) 🍁"
+    tput setaf 45
+    yarn start
+    ;;
   yarntest|yarnt|yt|ytest)
     echo "   🍁  ABO Admin (yarn test) 🍁"
     tput setaf 45

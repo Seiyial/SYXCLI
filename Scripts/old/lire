@@ -1,0 +1,9 @@
+#!/bin/bash
+
+subl Lire
+
+wait
+
+cd ~/SyxWorks/Lire
+
+bundle exec guard

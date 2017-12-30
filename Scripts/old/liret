@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ruby ~/SyxWorks/Lire/Private/test.rb

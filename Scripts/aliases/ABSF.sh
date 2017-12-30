@@ -1,1 +1,1 @@
-alias absf='cd ~/SiliconJungles/abo_storefront && absf_script'
+alias absf='cd ~/SYX/SJ/abo_storefront && absf_script'

@@ -7,7 +7,7 @@ puts "\nConfirm takein? This will take in dotfiles and scripts from your current
 
 approval = gets.chomp
 
-@path_script_source = "/Users/Seiyial/SyxApps/Scripts"
+@path_script_source = "/Users/Seiyial/SYX/Apps/Scripts"
 
 abort if approval.downcase != 'y'
 puts 'Migrate!'.green

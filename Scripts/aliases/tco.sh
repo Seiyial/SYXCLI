@@ -1,1 +1,1 @@
-alias tco='cd ~/SyxWorks/TCO && tco_script'
+alias tco='cd ~/SYX/Core/TCO && tco_script'
