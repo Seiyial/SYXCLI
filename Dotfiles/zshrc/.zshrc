@@ -88,16 +88,17 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
 
 # custom aliases
-export PATH="$HOME/SyxApps/Scripts:$PATH"
+export PATH="$HOME/SYX/Apps/Scripts:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 # This Config
-source ~/SyxApps/Scripts/init/helper_init.sh
-source ~/SyxApps/Scripts/init/alias_init.sh
+source ~/SYX/Apps/Scripts/init/helper_init.sh
+source ~/SYX/Apps/Scripts/init/alias_init.sh
 
-alias abo_cleanup='rm ~/SiliconJungles/abo_admin/app/assets/javascripts/frontend/app.js && rm ~/SiliconJungles/abo_admin/app/assets/javascripts/frontend/app.js.map'
 
 
 
