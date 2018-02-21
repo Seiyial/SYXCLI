@@ -1,1 +1,1 @@
-alias sj='echo "    🌿  SiliconJungles 🌿" && cd ~/SYX/SJ && cd'
+alias sj='echo "    🌿  SiliconJungles 🌿" && cd $SJ_DIRECTORY && cd'

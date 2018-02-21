@@ -1,0 +1,97 @@
+if [ -z $SYX_DIR ]; then SYX_DIR=$PWD; fi
+# echo $SYX_DIR
+
+tput setaf 117
+echo "
+=============================
+SYX CONFIG LIBRARY 🦉
+=============================
+"
+
+case "$1" in
+	install|ii)
+		SYX_TEXT="SYX_DIR='$SYX_DIR'
+alias syx='source $SYX_DIR/syx'
+"
+		case "$2" in
+			zsh)
+				echo "🍀  Add syx command at $SYX_DIR to ~/.zshrc"
+				echo $SYX_TEXT >> ~/.zshrc
+				echo " >> ✓
+				"
+				;;
+			bash)
+				echo "🍀  Add syx command to ~/.bash_profile"
+				cat $SYX_TEXT >> ~/.bash_profile
+				echo " >> ✓
+				"
+				;;
+			*)
+				echo "🍀  Add syx command to ~/.bash_profile"
+				echo "$SYX_TEXT" >> ~/.bash_profile
+				echo " >> ✓
+				"
+				echo "🍀  Add syx command to ~/.zshrc"
+				echo "$SYX_TEXT" >> ~/.zshrc
+				echo " >> ✓
+				"
+				;;
+		esac
+		;;
+
+	init|i)
+		SYX_PROCESS='true'
+		source "$SYX_DIR/scripts/init/core_init.sh"
+		;;
+
+	enforce)
+		# Not done yet
+		SYX_TEXT="SYX_DIR='$SYX_DIR'
+			alias syx='$SYX_DIR/syx'
+			source '$SYX_DIR/syx/init/core_init.sh'"
+
+		case "$2" in
+			
+			zsh)
+				printf "🍀  Add syx command and init to ~/.zshrc"
+				cat $SYX_TEXT >> ~/.zshrc
+				printf " >> ✓
+				"
+				;;
+			bash)
+				printf "🍀  Add syx command and init to ~/.bash_profile"
+				cat $SYX_TEXT >> ~/.bash_profile
+				printf " >> ✓
+				"
+				;;
+			*)
+				printf "🍀  Add syx command and init to ~/.bash_profile"
+				cat $SYX_TEXT >> ~/.bash_profile
+				printf " >> ✓
+				"
+				printf "🍀  Add syx command and init to ~/.zshrc"
+				cat $SYX_TEXT >> ~/.zshrc
+				printf " >> ✓
+				"
+				;;
+		esac
+		;;
+	*)
+		echo "
+
+☔️  Invalid Command
+-----------------------------
+
+Commands:
+
+syx install		: adds syx command to bash_profile and zshrc.
+syx install zsh 	: ^ zshrc only.
+syx install bash    	: ^ bash_profile only.
+
+syx enforce [zsh/bash]	: adds syx init to bash_profile and/or zshrc.
+
+syxinit		: calls alias_init and helper_init, to make aliases and helpers usable.
+			  Also adds abo_script etc to PATH.
+"
+		;;
+esac
