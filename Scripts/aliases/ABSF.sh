@@ -1,1 +1,1 @@
-alias absf='cd $SJ_DIRECTORY/abo_storefront && absf_script'
+alias absf='cd $DIR_SJ/abo_storefront && absf_script'

@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cd '/users/Seiyial/SyxWorks/LIRE'
-wait
-
-heroku config:get DATABASE_URL -r lire
-
-wait
-exit

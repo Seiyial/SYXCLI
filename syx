@@ -1,97 +1,112 @@
-if [ -z $SYX_DIR ]; then SYX_DIR=$PWD; fi
-# echo $SYX_DIR
+if [ -z $SYX_DIR ]; then
+	SYX_DIR=$PWD
+	echo "SYX_DIR has been temporarily assigned to $SYX_DIR"
+fi
 
 tput setaf 117
-echo "
-=============================
-SYX CONFIG LIBRARY 🦉
-=============================
-"
 
+
+# USAGE
+# First time install: run ./syx
+# Fill up settings, then choose whether to install
+# Auto adds syx AND runs syx init to PATH
+
+# if not running prestart (internal script)
 case "$1" in
-	install|ii)
-		SYX_TEXT="SYX_DIR='$SYX_DIR'
-alias syx='source $SYX_DIR/syx'
-"
-		case "$2" in
-			zsh)
-				echo "🍀  Add syx command at $SYX_DIR to ~/.zshrc"
-				echo $SYX_TEXT >> ~/.zshrc
-				echo " >> ✓
-				"
-				;;
-			bash)
-				echo "🍀  Add syx command to ~/.bash_profile"
-				cat $SYX_TEXT >> ~/.bash_profile
-				echo " >> ✓
-				"
-				;;
-			*)
-				echo "🍀  Add syx command to ~/.bash_profile"
-				echo "$SYX_TEXT" >> ~/.bash_profile
-				echo " >> ✓
-				"
-				echo "🍀  Add syx command to ~/.zshrc"
-				echo "$SYX_TEXT" >> ~/.zshrc
-				echo " >> ✓
-				"
-				;;
-		esac
-		;;
-
-	init|i)
-		SYX_PROCESS='true'
-		source "$SYX_DIR/scripts/init/core_init.sh"
-		;;
-
-	enforce)
-		# Not done yet
-		SYX_TEXT="SYX_DIR='$SYX_DIR'
-			alias syx='$SYX_DIR/syx'
-			source '$SYX_DIR/syx/init/core_init.sh'"
-
-		case "$2" in
-			
-			zsh)
-				printf "🍀  Add syx command and init to ~/.zshrc"
-				cat $SYX_TEXT >> ~/.zshrc
-				printf " >> ✓
-				"
-				;;
-			bash)
-				printf "🍀  Add syx command and init to ~/.bash_profile"
-				cat $SYX_TEXT >> ~/.bash_profile
-				printf " >> ✓
-				"
-				;;
-			*)
-				printf "🍀  Add syx command and init to ~/.bash_profile"
-				cat $SYX_TEXT >> ~/.bash_profile
-				printf " >> ✓
-				"
-				printf "🍀  Add syx command and init to ~/.zshrc"
-				cat $SYX_TEXT >> ~/.zshrc
-				printf " >> ✓
-				"
-				;;
-		esac
+	i|ii|init)
+		# echo "syx init"
+		SETTINGS_FILE="$SYX_DIR/SETTINGS"
+		# echo "Settings_file here is  $SETTINGS_FILE"
 		;;
 	*)
-		echo "
-
-☔️  Invalid Command
------------------------------
-
-Commands:
-
-syx install		: adds syx command to bash_profile and zshrc.
-syx install zsh 	: ^ zshrc only.
-syx install bash    	: ^ bash_profile only.
-
-syx enforce [zsh/bash]	: adds syx init to bash_profile and/or zshrc.
-
-syxinit		: calls alias_init and helper_init, to make aliases and helpers usable.
-			  Also adds abo_script etc to PATH.
-"
+		# Check or ask user to set settings
+		SETTINGS_FILE="$SYX_DIR/SETTINGS"
+		if [ -f $SETTINGS_FILE ]; then
+			echo "🔹  Settings File exists."
+			cat $SETTINGS_FILE
+		else
+			echo "🔹  Settings File does not exist."
+			FIRST_TIMER=true
+			cp example_settings SETTINGS
+			echo "▫️  Copied example_settings"
+			vi SETTINGS
+		fi
 		;;
 esac
+
+# Initialize settings
+source $SYX_DIR/SETTINGS
+
+tput setaf 117
+
+if [ -z $FIRST_TIMER ]; then
+
+	if [ -z $SILENT ]; then
+		echo "
+		=============================
+		SYXCMD SCRIPTS LIBRARY 🦉
+		=============================
+		"
+	fi
+
+	case "$1" in
+		i|ii|init)
+			# echo "SEttings file here is $SETTINGS_FILE"
+			source $SYX_DIR/Scripts/init/core_init.sh
+			;;
+		*)
+			echo "----MAIN MENU----"
+			echo "(1) Edit Settings File (vi $SYX_DIR/SETTINGS)"
+			echo "(2) Edit Settings File, then init (not working)"
+			echo "(3) Add SYX to zshrc & bash_profile, Again, and init here"
+			echo "(4) Add SYX and SYX INIT to zshrc & bash_profile, Again, and init here"
+			read -p ">> ✡ " MAINMENU_OPTION
+			if [ $MAINMENU_OPTION == "1" ] || [ $MAINMENU_OPTION == "2" ]; then
+				vi $SYX_DIR/SETTINGS
+			fi
+			if [ $MAINMENU_OPTION == "3" ] || [ $MAINMENU_OPTION == "4" ]; then
+				echo "SYX_DIR=$SYX_DIR" >> ~/.bash_profile
+				echo "alias syx='source \$SYX_DIR/syx'" >> ~/.bash_profile
+				echo "SYX_DIR=$SYX_DIR" >> ~/.zshrc
+				echo "alias syx='source \$SYX_DIR/syx'" >> ~/.zshrc
+			fi
+			if [ $MAINMENU_OPTION == "4" ]; then
+				echo "CLOVERS='true' SILENT=true syx i" >> ~/.bash_profile
+				echo "CLOVERS='true' SILENT=true syx i" >> ~/.zshrc
+			fi
+			if [ $MAINMENU_OPTION == "2" ] || [ $MAINMENU_OPTION == "3" ] || [ $MAINMENU_OPTION == "4" ]; then
+				# source SETTINGS_FILE
+				source $SYX_DIR/Scripts/init/core_init.sh
+			fi
+			;;
+	esac
+
+else
+
+	echo "How shall I install for this system?"
+	echo "(1) Enforced"
+	echo "(2) Silent"
+	echo "(3) Don't do anything"
+	echo "(4) Don't install, and Reset Settings"
+	printf ">> ✡ "
+	read INSTALL_TYPE
+
+	if [ $INSTALL_TYPE == "1" ] || [ $INSTALL_TYPE == "2" ]; then
+		echo "SYX_DIR=$SYX_DIR" >> ~/.bash_profile
+		echo "alias syx='source \$SYX_DIR/syx'" >> ~/.bash_profile
+		echo "SYX_DIR=$SYX_DIR" >> ~/.zshrc
+		echo "alias syx='source \$SYX_DIR/syx'" >> ~/.zshrc
+	fi
+	if [ $INSTALL_TYPE == "1" ]; then
+		echo "SILENT=true CLOVERS='true' syx i" >> ~/.bash_profile
+		echo "SILENT=true CLOVERS='true' syx i" >> ~/.zshrc
+	fi
+	if [ $INSTALL_TYPE == "4" ]; then
+		echo "remove SETTINGS ($SYX_DIR/SETTINGS)"
+		rm "$SYX_DIR/SETTINGS"
+	fi
+
+
+fi
+
+if [ -z $SILENT ]; then echo "Bye!"; fi

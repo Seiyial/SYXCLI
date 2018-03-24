@@ -1,1 +1,0 @@
-alias sieg='cd ~/SYX/EX/Sieghart'

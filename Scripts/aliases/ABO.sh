@@ -1,1 +1,1 @@
-alias abo='cd $SJ_DIRECTORY/abo_admin && abo_script'
+alias abo='cd $DIR_SJ/abo_admin && abo_script'
