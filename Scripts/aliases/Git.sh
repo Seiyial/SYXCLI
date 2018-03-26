@@ -23,3 +23,7 @@ alias gll='git branch'
 alias gbm='git branch -m'
 alias glld='git branch -d'
 alias glllld='git branch -D'
+
+alias gitg='git log --graph --full-history --all --color \
+        --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias gbl='git branch -l'
