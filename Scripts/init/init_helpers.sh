@@ -4,9 +4,9 @@ alias code='/Applications/"Visual Studio Code.app"/Contents/Resources/app/bin/co
 
 
 # Helpers
-alias zshconfig="subl ~/.zshrc"
+alias zshrc="subl ~/.zshrc"
 alias scripts="subl $SYX_DIR"
-alias syxconfigs="cd $SYX_DIR"
+alias syxcmd="cd $SYX_DIR"
 
 # Colours
 POWDER_BLUE=$(tput setaf 153)
