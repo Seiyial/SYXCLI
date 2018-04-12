@@ -1,0 +1,1 @@
+alias ath='cd $DIR_SYX/Librae\ Seien'
