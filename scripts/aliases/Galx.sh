@@ -1,0 +1,1 @@
+alias ga='cd $DIR_SYXC/Galaxia'

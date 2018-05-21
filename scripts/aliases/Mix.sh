@@ -1,4 +1,6 @@
 alias mdg='mix deps.get'
-alias mect='mix ecto.create'
+alias mrr='iex -S mix run'
+alias mrp='iex -S mix phx.server'
+alias mec='mix ecto.create'
 alias meld='mix ecto.load'
 alias m='mix'
