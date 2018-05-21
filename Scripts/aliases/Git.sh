@@ -18,5 +18,9 @@ echo "  🌃 $(tput setaf 39 && tput bold) △  Checkout △" && tput sgr0 && tp
 alias gccp='
 echo "  🌃 $(tput setaf 39 && tput bold) Push $(tput setaf 1 && git rev-parse --abbrev-ref HEAD) $(tput setaf 39)to Origin" && tput sgr0 && tput setaf 39 && git push origin'
 
+alias gccpu='
+echo "  🌃 $(tput setaf 39 && tput bold) Push $(tput setaf 1 && git rev-parse --abbrev-ref HEAD) $(tput setaf 39)to Origin (new branch)" && tput sgr0 && tput setaf 39 && git push origin -u $(git rev-parse --abbrev-ref HEAD)'
+
+
 alias gl='git log'
 alias glp='git log -p'
