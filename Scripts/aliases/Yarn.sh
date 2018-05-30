@@ -11,6 +11,10 @@ alias ys='tput setaf 75 && clear && echo "==================================
     💧  yarn start 💧
 ==================================" && yarn start'
 
+alias yt='tput setaf 75 && clear && echo "==================================       
+    💧  yarn test 💧
+==================================" && yarn test'
+
 alias yys='tput setaf 75 && clear && echo "==================================       
     💧  yarn start 💧
 ==================================" && yarn start'
