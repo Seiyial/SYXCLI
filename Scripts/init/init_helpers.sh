@@ -1,7 +1,7 @@
 # Apps
 alias subl='/Applications/"Sublime Text.app"/Contents/SharedSupport/bin/subl'
 alias code='/Applications/"Visual Studio Code.app"/Contents/Resources/app/bin/code'
-
+alias typora='open -a "Typora"'
 
 # Helpers
 alias zshrc="subl ~/.zshrc"
