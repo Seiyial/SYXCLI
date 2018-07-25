@@ -1,1 +1,0 @@
-alias yarnf='cd frontend && yarn $@ && cd ..'
