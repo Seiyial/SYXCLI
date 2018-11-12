@@ -1,6 +1,3 @@
+alias mpx='tput setaf 99 && if [ -f .env ]; then source .env && printf "$ source .env\n$ iex -S mix phx.server\n\n"; fi && iex -S mix phx.server'
 alias mdg='mix deps.get'
-alias mrr='iex -S mix run'
-alias mpx='iex -S mix phx.server'
-alias mps='mix phx.server'
 alias mpg='mix phx.digest'
-alias m='mix'

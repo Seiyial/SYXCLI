@@ -1,3 +1,6 @@
+alias nodeg='tput setaf 75 && clear && echo "    💧  yarn global node 💧
+" && cd ~/.config/yarn/global/node_modules && node'
+
 alias yy='tput setaf 75 && clear && echo "==================================       
     💧  yarn run 💧
 ==================================
