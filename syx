@@ -1,10 +1,11 @@
+#!/usr/bin/env bash
+
 if [ -z $SYX_DIR ]; then
 	SYX_DIR=$PWD
 	echo "SYX_DIR has been temporarily assigned to $SYX_DIR"
 fi
 
 tput setaf 117
-
 
 # USAGE
 # First time install: run ./syx

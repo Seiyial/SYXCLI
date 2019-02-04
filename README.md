@@ -1,41 +1,38 @@
-# Syx Cmd
+<h1 style="color: darkcyan">SYX Command Line Tools (<code>SYXCLI</code>)</h1>
 
-Custom Scripts Engine
+## Core Package
 
-## Installation
+`SYXCLI` is a list of command line utilities that can help to make developer life easier.
 
-```bash
-$ git clone https://github.com/Seiyial/SyxCmd
-$ cd SyxCmd
-$ ./syx
-# here, you will see three options.
-# Option 1: One-off linking
-#   The Custom CLI will only be active for this terminal session.
-# Option 2: Uninvasive linking
-#   The 'syx' command will be added to PATH, but CLI will not be active by default. To activate, use 'syx init' or 'syx i'.
-# Option 3: Enforced linking
-#   The 'syx' command will be added to PATH, and CLI will be activated by default.
-# ----------
-# Make sure the storage directory is ideal before beginning. You will need to reinstall upon changing your storage directory.
-# Make sure your Folder Paths are accurate in the SETTINGS file.
-# Select the appropriate Option for your use case.
-```
+## Modules
 
-## Uninstallation
+`SYXCLI` is made up of a few modules, namely:
 
-#### One-off linking
+### SYXCMD
 
-No uninstallation is required other than deleting the SyxCmd folder, if you must.
+Your personal collection of shell scripts and aliases. Cleanly share them across the different workstations that you use.
 
-#### Uninvasive / Enforced Linking
+Features:-
 
-From the SyxCmd directory, run
+- Organise your personal scripts
+- Optionally include built-in scripts
+- Auto-enable on your PC, one command to enable everything on shared workspaces (per shell session)
+- Easy to configure and enable/disable
+
+Enable `SYXCMD`
+
+### DIR-APP `(new)`
+
+Organise your home directory. Set up shortcuts to your favourite/current projects.
+
+#### Enable this Module
 
 ```bash
-$ syx uninstall
+# ~/.zshrc
+export SYXCLI_DIRS=true
+
+# /path/to/your/workspace_root
+export SYXCLI_DIRS_MAIN=
+
+# /
 ```
-
-
-
-## Commands
-
