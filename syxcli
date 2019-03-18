@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+syxcli_get_dir () {
+	# see bin/syxcli for explanation on this script
+	# https://stackoverflow.com/questions/59895/get-the-source-directory-of-a-bash-script-from-within-the-script-itself
+	SYXCLI_UTIL_BASHSOURCE="${BASH_SOURCE[0]}"
+	while [ -h "$SOURCE" ]; do
+		SYXCLI_DIR="$( cd -P "$( dirname "$SYXCLI_UTIL_BASHSOURCE" )" >/dev/null 2>&1 && pwd )"
+		SYXCLI_UTIL_BASHSOURCE="$(readlink "$SYXCLI_UTIL_BASHSOURCE")"
+		[[ $SYXCLI_UTIL_BASHSOURCE != /* ]] && SYXCLI_UTIL_BASHSOURCE="$SYXCLI_DIR/$SYXCLI_UTIL_BASHSOURCE"
+	done
+	SYXCLI_DIR="$( cd -P "$( dirname "$SYXCLI_UTIL_BASHSOURCE" )" >/dev/null 2>&1 && pwd )"
+}
+
+syxcli_get_dir
+
+source $SYXCLI_DIR/bin/syxcli
+

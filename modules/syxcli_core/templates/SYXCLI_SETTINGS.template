@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# SYXCLI Settings
+# ------------------
+#
+# You may declare your SYXCLI settings in any of the following places. Settings
+# in #1 overrides #2 and so on.
+#
+# 1) SYXCLI_SETTINGS_LOCAL
+# 2) SYXCLI_SETTINGS
+# 3) ~/.bashrc, ~/.bash_profile, ~/.zshrc, and other files  
+
+SyxCMD_enable=true
+SyxCMD_use_aliases=true
+SyxCMD_use_scripts=true
+SyxCMD_exclude_aliases=()
+SyxCMD_exclude_scripts=()
+
+# SyxDirApp_enable=true
+# SyxDirApp_workspace_root=/Users/developer/workspace

@@ -16,7 +16,5 @@ SyxCMD_use_scripts=true
 SyxCMD_exclude_aliases=()
 SyxCMD_exclude_scripts=()
 
-SyxDirApp_enable=true
-SyxDirApp_workspace_root=/Users/developer/workspace
-
-
+# SyxDirApp_enable=true
+# SyxDirApp_workspace_root=/Users/developer/workspace

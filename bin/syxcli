@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+[ -z $SYXCLI_VERBOSE ] || printf "\n<*> SYXCLI <*>\n\n"
+
+syxcli_verbose () {
+	[ -z $SYXCLI_VERBOSE ] || echo "<ЖCLI> $1"
+}
+
+syxcli_get_dir () {
+	# https://stackoverflow.com/questions/59895/get-the-source-directory-of-a-bash-script-from-within-the-script-itself
+	# This function returns the Directory of the file in which it is called
+	# and assigns it to $SYXCLI_DIR.
+	SYXCLI_UTIL_BASHSOURCE="${BASH_SOURCE[0]}"
+	while [ -h "$SOURCE" ]; do
+		# resolve $SYXCLI_UTIL_BASHSOURCE until the file is no longer a symlink
+		SYXCLI_DIR="$( cd -P "$( dirname "$SYXCLI_UTIL_BASHSOURCE" )" >/dev/null 2>&1 && pwd )"
+		SYXCLI_UTIL_BASHSOURCE="$(readlink "$SYXCLI_UTIL_BASHSOURCE")"
+		[[ $SYXCLI_UTIL_BASHSOURCE != /* ]] && SYXCLI_UTIL_BASHSOURCE="$SYXCLI_DIR/$SYXCLI_UTIL_BASHSOURCE"
+		# if $SOURCE was a relative symlink, we need to resolve it relative
+		# to the path where the symlink file was located
+	done
+
+	SYXCLI_DIR="$( cd -P "$( dirname "$SYXCLI_UTIL_BASHSOURCE" )" >/dev/null 2>&1 && pwd )"
+	syxcli_verbose "Set SYXCLI_DIR to \"$SYXCLI_DIR\" (syxcli_get_dir)"
+}
+
+syxcli_get_dir_rm_bin () {
+	syxcli_get_dir
+	SYXCLI_UTIL_DIR_SUFFIX="/bin"
+	SYXCLI_DIR=${SYXCLI_DIR%"$SYXCLI_UTIL_DIR_SUFFIX"}
+	syxcli_verbose "Set SYXCLI_DIR to \"$SYXCLI_DIR\" (syxcli_get_dir_rm_bin)"
+}
+
+syxcli_get_dir_rm_bin
+
+source $SYXCLI_DIR/modules/syxcli_core/util.sh
+
+syxcli_check_settings_exist
+syxcli_help_create_settings_if_need
+syxcli_source_settings_if_exist

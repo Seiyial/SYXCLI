@@ -1,0 +1,12 @@
+#!/bin/bash
+tput setaf 214
+clear
+echo "
+     🔶  Repo System 🔶"
+
+case "$1" in
+  link)
+    touch "~/SyxApps/Scripts/$2"
+  ;;
+
+esac

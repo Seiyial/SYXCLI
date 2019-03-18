@@ -1,0 +1,3 @@
+cd assets
+yarn $@
+cd ..

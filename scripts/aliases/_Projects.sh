@@ -1,2 +1,4 @@
-alias mds="cd ~/SYX/WORKS/MadisonAcademy"
-alias wp="cd ~/SYX/WORKS/WP_MDS"
+alias mds="cd ~/SYX/WORKS/MadisonAcademyOfMusic"
+alias zpl="cd ~/SYX/CORE/Zipline"
+alias reverie="cd ~/SYX/CORE/Reverie"
+alias shq="cd ~/SYX/CORE/SHQ"
