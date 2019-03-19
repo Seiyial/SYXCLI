@@ -19,20 +19,16 @@ syxcli_assign_task () {
 
 syxcli_parse_args () {
 	SYXCLI_START_TASK=""
+	syxcli_dont_set_dir=""
 	for arg in "$@"; do
 		case "$arg" in
-			"setup")
+			"install"|"i")
 				syxcli_info "Arg: setup"
 				syxcli_assign_task "setup"
 				;;
 			"autorun")
 				syxcli_info "Arg: autorun"
 				syxcli_assign_task "autorun"
-				;;
-			"debug")
-				SYXCLI_VERBOSE=true
-				syxcli_info "Arg: debug"
-				syxcli_assign_task "setup"
 				;;
 			"--silent-fail"|"-f")
 				syxcli_info "Arg: --silent-fail"
@@ -50,14 +46,16 @@ syxcli_parse_args () {
 				syxcli_info "Arg: --verbose"
 				SYXCLI_VERBOSE=true
 				;;
+			"--from-rc"|"-r")
+				# Expect $SYXCLI_DIR to be set before executing syxcli.
+				syxcli_dont_set_dir="true"
+				;;
 			*)
 				[[ $syxcli_silent_fail == "true" ]] || echo "Usage: syxcli [action] [options]
 
 - Actions (choose one):
 install               Run initial setup based on your usage mode
-jumpstart             \`install\` then \`autorun\`
 autorun               Check if settings are found, then activate modules
-activate              Activate modules
 (no input)            Display main menu
 
 - Options:
@@ -66,6 +64,9 @@ activate              Activate modules
                       unless silent-fail is passed in as well)
 --clovers, -c         Display the SYXCMD Clover field
 --verbose, -v         Show all debug messages
+--from-rc, -r         Flag if running from ~/.bashrc, ~/.bash_profile
+                      or ~/.zshrc. Set \$SYXCLI_DIR to your syxcli
+                      installation path before running syxcli.
 				"
 				exit 1
 				;;
@@ -104,15 +105,20 @@ syxcli_get_dir_rm_bin () {
 	syxcli_info "Set SYXCLI_DIR to \"$SYXCLI_DIR\" (syxcli_get_dir_rm_bin)"
 }
 
-syxcli_activate_modules () {
-	# SYXCMD
-	syxcli_info "(syxcli_activate_modules) Running"
-	source $SYXCLI_DIR/modules/syxcli_core/cmd.sh
-	syxcli_cmd_main
-}
-
 syxcli_parse_args $@
-syxcli_get_dir_rm_bin
+
+if [[ $syxcli_dont_set_dir == "true" ]]
+then
+	if [[ -z $SYXCLI_DIR ]]
+	then
+		# must explicitly set SYXCLI_DIR before running
+		# if you are running syxcli from bash_profile, zshrc etc.
+		# If not, run syxcli without the -r and --from-rc flags.
+		syxcli_fail "Set SYXCLI_DIR before running!"
+	fi
+else
+	syxcli_get_dir_rm_bin
+fi
 
 case "$SYXCLI_START_TASK" in
 	"autorun")
@@ -127,10 +133,13 @@ case "$SYXCLI_START_TASK" in
 		source $SYXCLI_DIR/scripts/installer.sh
 		syxcli_check_settings_exist
 		syxcli_help_create_settings_if_need
+		syxcli_install_choice=""
 		syxcli_run_installer
+		;;
 	"")
 		syxcli_main_menu
 		;;
 	*)
+		;;
 esac
 

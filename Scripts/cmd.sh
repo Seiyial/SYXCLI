@@ -22,12 +22,16 @@ syxcli_cmd_aliases () {
 	then
 		syxcli_info "(cmd.sh/aliases) detected \$syxcmd_use_aliases=true, proceed with SyxCMD Aliases"
 
+		[[ $SYXCLI_CLOVERS == "true" ]] && printf "\n"
+
 		for filename in $SYXCLI_DIR/modules/syxcmd_aliases/*.sh; do
 			syxcli_info "Source $filename..."
 			source $filename
 			[[ $SYXCLI_VERBOSE == "true" ]] && printf " done"
 			[[ $SYXCLI_CLOVERS == "true" ]] && printf "🍀  "
 		done
+
+		[[ $SYXCLI_CLOVERS == "true" ]] && printf "\n"
 
 		syxcli_info "(cmd.sh/aliases) done sourcing aliases"
 	else

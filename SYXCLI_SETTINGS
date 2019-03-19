@@ -8,13 +8,16 @@
 #
 # 1) SYXCLI_SETTINGS_LOCAL
 # 2) SYXCLI_SETTINGS
-# 3) ~/.bashrc, ~/.bash_profile, ~/.zshrc, and other files  
+# 3) ~/.bashrc, ~/.bash_profile, ~/.zshrc, and other files
+
+# Alias that will be put into rc file. What the syxcli alias does depends on installation.
+# Alias-type installation: syxcli alias will activate syxcli.
+# Syxcli-runs-automatically installation: syxcli alias is an alias of bin/syxcli itself.
+syxcli_rc_file_alias="syxcli"
 
 syxcmd_enable=true
 syxcmd_use_aliases=true
 syxcmd_use_scripts=true
-syxcmd_exclude_aliases=()
-syxcmd_exclude_scripts=()
 
-# SyxDirApp_enable=true
+# syxdirlink_enable=true
 # SyxDirApp_workspace_root=/Users/developer/workspace
