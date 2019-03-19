@@ -51,24 +51,7 @@ syxcli_parse_args () {
 				syxcli_dont_set_dir="true"
 				;;
 			*)
-				[[ $syxcli_silent_fail == "true" ]] || echo "Usage: syxcli [action] [options]
-
-- Actions (choose one):
-install               Run initial setup based on your usage mode
-autorun               Check if settings are found, then activate modules
-(no input)            Display main menu
-
-- Options:
---silent-fail, -f     Do not show failure output
---silent, -s          Silently execute (but still show errors
-                      unless silent-fail is passed in as well)
---clovers, -c         Display the SYXCMD Clover field
---verbose, -v         Show all debug messages
---from-rc, -r         Flag if running from ~/.bashrc, ~/.bash_profile
-                      or ~/.zshrc. Set \$SYXCLI_DIR to your syxcli
-                      installation path before running syxcli.
-				"
-				exit 1
+				[[ $syxcli_silent_fail == "true" ]] || syxcli_show_instructions_and_quit
 				;;
 		esac
 	done
@@ -78,6 +61,27 @@ autorun               Check if settings are found, then activate modules
 
 syxcli_fail () {
 	[[ $syxcli_silent_fail == "true" ]] || echo "SYXCLI ERROR: $1"
+}
+
+syxcli_show_instructions_and_quit () {
+	echo "Usage: syxcli [action] [options]
+
+	- Actions (choose one):
+	install               Run initial setup based on your usage mode
+	autorun               Check if settings are found, then activate modules
+	(no input)            Display main menu
+
+	- Options:
+	--silent-fail, -f     Do not show failure output
+	--silent, -s          Silently execute (but still show errors
+	                      unless silent-fail is passed in as well)
+	--clovers, -c         Display the SYXCMD Clover field
+	--verbose, -v         Show all debug messages
+	--from-rc, -r         Flag if running from ~/.bashrc, ~/.bash_profile
+	                      or ~/.zshrc. Set \$SYXCLI_DIR to your syxcli
+	                      installation path before running syxcli.
+	"
+	exit 1
 }
 
 syxcli_get_dir () {
@@ -137,9 +141,10 @@ case "$SYXCLI_START_TASK" in
 		syxcli_run_installer
 		;;
 	"")
-		syxcli_main_menu
+		syxcli_show_instructions_and_quit
 		;;
 	*)
+		syxcli_show_instructions_and_quit
 		;;
 esac
 

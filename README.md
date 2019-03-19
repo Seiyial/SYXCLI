@@ -21,18 +21,13 @@ Features:-
 
 Enable `SYXCMD`
 
-### SYXDIRLINK `(new)`
+### SYXDIRLINK `(U/C)`
 
-Organise your home directory. Set up shortcuts to your favourite/current projects.
+Organise your home directory. Set up shortcuts to your favourite/current projects. Jump to your favourite project immediately upon starting your terminal session.
 
-#### Enable this Module
+## Installation
 
 ```bash
-# ~/.zshrc
-export SYXCLI_DIRS=true
-
-# /path/to/your/workspace_root
-export SYXCLI_DIRS_MAIN=
-
-# /
+git clone https://github.com/Seiyial/SYXCLI.git ~/.syxcli
+~/.syxcli/syxcli install
 ```

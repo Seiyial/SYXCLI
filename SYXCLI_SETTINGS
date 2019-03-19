@@ -6,7 +6,7 @@
 # You may declare your SYXCLI settings in any of the following places. Settings
 # in #1 overrides #2 and so on.
 #
-# 1) SYXCLI_SETTINGS_LOCAL
+# 1) SYXCLI_SETTINGS_LOCAL (U/C)
 # 2) SYXCLI_SETTINGS
 # 3) ~/.bashrc, ~/.bash_profile, ~/.zshrc, and other files
 
