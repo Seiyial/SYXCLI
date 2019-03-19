@@ -119,22 +119,18 @@ case "$SYXCLI_START_TASK" in
 		source $SYXCLI_DIR/scripts/settings.sh
 		source $SYXCLI_DIR/scripts/cmd.sh
 		syxcli_check_settings_exist
-		syxcli_help_create_settings_if_need
 		syxcli_source_settings_if_exist
-		syxcli_cmd_main
+		syxcli_activate_cmd
 		;;
+	"setup")
+		source $SYXCLI_DIR/scripts/settings.sh
+		source $SYXCLI_DIR/scripts/installer.sh
+		syxcli_check_settings_exist
+		syxcli_help_create_settings_if_need
+		syxcli_run_installer
 	"")
 		syxcli_main_menu
 		;;
 	*)
 esac
 
-# syxcli_get_dir_rm_bin
-
-# source $SYXCLI_DIR/modules/syxcli_core/util.sh
-
-# syxcli_check_settings_exist
-# syxcli_help_create_settings_if_need
-# syxcli_source_settings_if_exist
-
-# syxcli_info "Goodbye!"

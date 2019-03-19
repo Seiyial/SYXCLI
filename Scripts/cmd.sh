@@ -1,5 +1,4 @@
-
-syxcli_cmd_main () {
+syxcli_activate_cmd () {
 	# requires the setup functions complete, find them in util.sh and run them first.
 	# syxcli will run them before running this function
 	# requires:
