@@ -1,1 +1,0 @@
-alias lire='cd ~/SYX/Core/LIRE && lire_script'

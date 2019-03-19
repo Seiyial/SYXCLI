@@ -1,1 +1,0 @@
-alias abo='cd $DIR_SJ/abo_admin && abo_script'

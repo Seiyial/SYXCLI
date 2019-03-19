@@ -21,7 +21,7 @@ Features:-
 
 Enable `SYXCMD`
 
-### DIR-APP `(new)`
+### SYXDIRLINK `(new)`
 
 Organise your home directory. Set up shortcuts to your favourite/current projects.
 

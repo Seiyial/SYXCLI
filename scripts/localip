@@ -1,9 +1,0 @@
-tput setaf 24
-
-echo "$ ipconfig getifaddr en0"
-
-tput setaf 33
-
-tput bold
-echo "    $(ipconfig getifaddr en0)"
-exit

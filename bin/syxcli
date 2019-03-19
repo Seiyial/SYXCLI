@@ -1,40 +1,140 @@
 #!/usr/bin/env bash
 
-[ -z $SYXCLI_VERBOSE ] || printf "\n<*> SYXCLI <*>\n\n"
+# Debug function is most necessary, thus goes first
+syxcli_info () {
+	[[ -z $SYXCLI_VERBOSE ]] || echo "<ЖCLI> $1"
+}
 
-syxcli_verbose () {
-	[ -z $SYXCLI_VERBOSE ] || echo "<ЖCLI> $1"
+# Next is the arg passing; don't want to introduce unnecessary functions to the autorun that slows it down
+syxcli_assign_task () {
+	# This function ensures there's only one task; throws errors otherwise
+	if [[ -z $SYXCLI_START_TASK ]]
+	then
+		SYXCLI_START_TASK="$1"
+	else
+		syxcli_info "ERROR: Invalid command (multiple SYXCLI_START_TASK assigned)"
+		syxcli_info "Please choose only one of the following: autorun, install, jumpstart, activate, check (syxcli_assign_task)"
+	fi
+}
+
+syxcli_parse_args () {
+	SYXCLI_START_TASK=""
+	for arg in "$@"; do
+		case "$arg" in
+			"setup")
+				syxcli_info "Arg: setup"
+				syxcli_assign_task "setup"
+				;;
+			"autorun")
+				syxcli_info "Arg: autorun"
+				syxcli_assign_task "autorun"
+				;;
+			"debug")
+				SYXCLI_VERBOSE=true
+				syxcli_info "Arg: debug"
+				syxcli_assign_task "setup"
+				;;
+			"--silent-fail"|"-f")
+				syxcli_info "Arg: --silent-fail"
+				syxcli_silent_fail="true"
+				;;
+			"--silent-pass"|"-s")
+				syxcli_info "Arg: --silent-pass (SYXCLI_SILENT)"
+				SYXCLI_SILENT="true"
+				;;
+			"--clovers"|"-c")
+				syxcli_info "Arg: --clovers"
+				SYXCLI_CLOVERS="true"
+				;;
+			"--verbose"|"-v")
+				syxcli_info "Arg: --verbose"
+				SYXCLI_VERBOSE=true
+				;;
+			*)
+				[[ $syxcli_silent_fail == "true" ]] || echo "Usage: syxcli [action] [options]
+
+- Actions (choose one):
+install               Run initial setup based on your usage mode
+jumpstart             \`install\` then \`autorun\`
+autorun               Check if settings are found, then activate modules
+activate              Activate modules
+(no input)            Display main menu
+
+- Options:
+--silent-fail, -f     Do not show failure output
+--silent, -s          Silently execute (but still show errors
+                      unless silent-fail is passed in as well)
+--clovers, -c         Display the SYXCMD Clover field
+--verbose, -v         Show all debug messages
+				"
+				exit 1
+				;;
+		esac
+	done
+}
+
+[[ $SYXCLI_VERBOSE == "true" ]] && printf "\n<*> SYXCLI <*>\n\n"
+
+syxcli_fail () {
+	[[ $syxcli_silent_fail == "true" ]] || echo "SYXCLI ERROR: $1"
 }
 
 syxcli_get_dir () {
 	# https://stackoverflow.com/questions/59895/get-the-source-directory-of-a-bash-script-from-within-the-script-itself
 	# This function returns the Directory of the file in which it is called
 	# and assigns it to $SYXCLI_DIR.
-	SYXCLI_UTIL_BASHSOURCE="${BASH_SOURCE[0]}"
+	syxcli_util_bashsource="${BASH_SOURCE[0]}"
 	while [ -h "$SOURCE" ]; do
-		# resolve $SYXCLI_UTIL_BASHSOURCE until the file is no longer a symlink
-		SYXCLI_DIR="$( cd -P "$( dirname "$SYXCLI_UTIL_BASHSOURCE" )" >/dev/null 2>&1 && pwd )"
-		SYXCLI_UTIL_BASHSOURCE="$(readlink "$SYXCLI_UTIL_BASHSOURCE")"
-		[[ $SYXCLI_UTIL_BASHSOURCE != /* ]] && SYXCLI_UTIL_BASHSOURCE="$SYXCLI_DIR/$SYXCLI_UTIL_BASHSOURCE"
+		# resolve $syxcli_util_bashsource until the file is no longer a symlink
+		SYXCLI_DIR="$( cd -P "$( dirname "$syxcli_util_bashsource" )" >/dev/null 2>&1 && pwd )"
+		syxcli_util_bashsource="$(readlink "$syxcli_util_bashsource")"
+		[[ $syxcli_util_bashsource != /* ]] && syxcli_util_bashsource="$SYXCLI_DIR/$syxcli_util_bashsource"
 		# if $SOURCE was a relative symlink, we need to resolve it relative
 		# to the path where the symlink file was located
 	done
 
-	SYXCLI_DIR="$( cd -P "$( dirname "$SYXCLI_UTIL_BASHSOURCE" )" >/dev/null 2>&1 && pwd )"
-	syxcli_verbose "Set SYXCLI_DIR to \"$SYXCLI_DIR\" (syxcli_get_dir)"
+	SYXCLI_DIR="$( cd -P "$( dirname "$syxcli_util_bashsource" )" >/dev/null 2>&1 && pwd )"
+	syxcli_info "Set SYXCLI_DIR to \"$SYXCLI_DIR\" (syxcli_get_dir)"
 }
 
 syxcli_get_dir_rm_bin () {
 	syxcli_get_dir
 	SYXCLI_UTIL_DIR_SUFFIX="/bin"
 	SYXCLI_DIR=${SYXCLI_DIR%"$SYXCLI_UTIL_DIR_SUFFIX"}
-	syxcli_verbose "Set SYXCLI_DIR to \"$SYXCLI_DIR\" (syxcli_get_dir_rm_bin)"
+	syxcli_info "Set SYXCLI_DIR to \"$SYXCLI_DIR\" (syxcli_get_dir_rm_bin)"
 }
 
+syxcli_activate_modules () {
+	# SYXCMD
+	syxcli_info "(syxcli_activate_modules) Running"
+	source $SYXCLI_DIR/modules/syxcli_core/cmd.sh
+	syxcli_cmd_main
+}
+
+syxcli_parse_args $@
 syxcli_get_dir_rm_bin
 
-source $SYXCLI_DIR/modules/syxcli_core/util.sh
+case "$SYXCLI_START_TASK" in
+	"autorun")
+		source $SYXCLI_DIR/scripts/settings.sh
+		source $SYXCLI_DIR/scripts/cmd.sh
+		syxcli_check_settings_exist
+		syxcli_help_create_settings_if_need
+		syxcli_source_settings_if_exist
+		syxcli_cmd_main
+		;;
+	"")
+		syxcli_main_menu
+		;;
+	*)
+esac
 
-syxcli_check_settings_exist
-syxcli_help_create_settings_if_need
-syxcli_source_settings_if_exist
+# syxcli_get_dir_rm_bin
+
+# source $SYXCLI_DIR/modules/syxcli_core/util.sh
+
+# syxcli_check_settings_exist
+# syxcli_help_create_settings_if_need
+# syxcli_source_settings_if_exist
+
+# syxcli_info "Goodbye!"

@@ -1,1 +1,0 @@
-alias abd='cd $DIR_SJ/abo_desktop'
