@@ -128,9 +128,11 @@ case "$SYXCLI_START_TASK" in
 	"autorun")
 		source $SYXCLI_DIR/scripts/settings.sh
 		source $SYXCLI_DIR/scripts/cmd.sh
+		source $SYXCLI_DIR/scripts/dirtool.sh
 		syxcli_check_settings_exist
 		syxcli_source_settings_if_exist
 		syxcli_activate_cmd
+		syxcli_activate_dlink
 		;;
 	"setup")
 		source $SYXCLI_DIR/scripts/settings.sh

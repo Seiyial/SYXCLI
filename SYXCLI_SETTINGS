@@ -19,5 +19,5 @@ syxcmd_enable=true
 syxcmd_use_aliases=true
 syxcmd_use_scripts=true
 
-# syxdirlink_enable=true
-# SyxDirApp_workspace_root=/Users/developer/workspace
+syxdlink_enable=true
+syxdlink_aliases=("p" "tp")

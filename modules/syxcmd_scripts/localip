@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 tput setaf 24
 
 echo "$ ipconfig getifaddr en0"

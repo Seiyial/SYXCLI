@@ -18,6 +18,9 @@ function git-recent-branch-switcher {
 
     result=$(git for-each-ref --count="$num_results" --sort=-authordate:iso8601 refs/heads/ --format='%(color:yellow)%(HEAD) %(refname:short)')
 
+    echo $result
+    clear
+
     branch=$(menu "$result")
     branch=$(extract_branch "$branch")
     current_branch=$(git rev-parse --abbrev-ref HEAD)
