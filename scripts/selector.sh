@@ -17,8 +17,8 @@ syxdlk_selector () {
     print_selected()   { printf "\r $(tput setaf 37)$ESC[1m { $1 } $(tput sgr0)$(tput setaf 24)$2 $ESC[27m$(tput sgr0)"; }
     get_cursor_row()   { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${ROW#*[}; }
     key_input()        { read -s -n3 key 2>/dev/null >&2
-                         if [[ $key = $ESC[A ]]; then echo up;    fi
-                         if [[ $key = $ESC[B ]]; then echo down;  fi
+                         if [[ $key = "$ESC[A" ]]; then echo up;    fi
+                         if [[ $key = "$ESC[B" ]]; then echo down;  fi
                          if [[ $key = ""     ]]; then echo enter; fi; }
 
     # initially print empty new lines (scroll down if at bottom of screen)
