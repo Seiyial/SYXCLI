@@ -100,7 +100,11 @@ syxdlk_target="${syxdlk_options[$syxdlk_choice]}"
 
 syxdlk_target_name="$(cut -d "|" -f 1 <<< "$syxdlk_target")"
 syxdlk_target_path="$(cut -d "|" -f 2 <<< "$syxdlk_target")"
-syxdlk_target_path="${syxdlk_target_path/\~/$HOME}"
+# syxdlk_target_path="${syxdlk_target_path/\~/$HOME}"
 
 clear
+echo "from `pwd`"
 cd "$syxdlk_target_path"
+echo "to `pwd`"
+
+ls
