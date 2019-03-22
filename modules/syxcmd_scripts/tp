@@ -13,8 +13,10 @@ exit_script () {
     tput cnorm
 }
 
-trap exit_script SIGINT SIGTERM
-
+get_syxcli_dir () {
+    SYXCLI_DIR="/Users/Seiyial/SYX/Apps/SYXCLI"
+    echo "Syxcli dir $SYXCLI_DIR"
+}
 
 function git-recent-branch-switcher {
 
@@ -25,13 +27,16 @@ function git-recent-branch-switcher {
 
     # result=$(git for-each-ref --count="$num_results" --sort=-authordate:iso8601 refs/heads/ --format='%(color:yellow)%(HEAD) %(refname:short)')
 
-    result="Option A
-Option B
-Option C
-Option D"
+    # result="$(cat $SYXCLI_DIR/PROJECT_LIST)"
 
-    echo $result
-    clear
+    result="GGI::Users-Seiyial-SYX-WORKS-GGI-GoGiveApp-
+TYMFO::Users-Seiyial-SYX-WORKS-TYMFO-
+Zipline::Users-Seiyial-SYX-CORE-Zipline-
+MDS::Users-Seiyial-SYX-WORKS-MDS-
+SYXCLI::Users-Seiyial-SYX-Apps-SYXCLI-"
+
+    # echo $result
+    # clear
 
     branch=$(menu "$result")
     branch=$(extract_branch "$branch")
@@ -91,7 +96,8 @@ function menu {
             if [[ $current_pos == $i ]]; then
                 echo -n "$highlight_color"
             fi
-      eval "echo ${options[i]}"
+    
+            eval "echo ${options[i]}"
         done
 
         read -sn 1 key
@@ -132,4 +138,6 @@ function menu {
     echo "${options[current_pos]}"
 }
 
+get_syxcli_dir
+trap exit_script SIGINT SIGTERM
 git-recent-branch-switcher $@
