@@ -81,7 +81,7 @@ syxcli_show_instructions_and_quit () {
 	                      or ~/.zshrc. Set \$SYXCLI_DIR to your syxcli
 	                      installation path before running syxcli.
 	"
-	exit 1
+	# exit 1
 }
 
 syxcli_get_dir () {
