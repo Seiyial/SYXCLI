@@ -20,4 +20,4 @@ syxcmd_use_aliases=true
 syxcmd_use_scripts=true
 
 syxdlink_enable=true
-syxdlink_aliases=("p" "tp")
+syxdlink_aliases=("p")
