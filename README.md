@@ -26,7 +26,7 @@ SYXCLI supports a few installation modes.
 
 Choose the one that fits you best!
 
-#### SYXCMD
+#### Tool #1: `SYXCMD`
 
 - Easily handle your collection of personal scripts and aliases by keeping them within `syxcli/modules/syxcmd_scripts` and `syxcli/modules/syxcmd_aliases`.
 - `scripts` folder will be in the `PATH`. (optional)
@@ -66,3 +66,13 @@ syxdlink_aliases=("p" "tp")
 ```
 
 Happy Teleporting!!
+
+## Contributing
+
+Please feel free to fork this repo and/or create `issue`s and `pull request`s (using the master branch code) for possible improvements you have in mind 🙂
+
+Current task list
+
+- [x] Make `SYX TELEPORT` work
+- [ ] Beautify `SYX TELEPORT` (top priority)
+- [ ] Clean up and refactor (low priority)
