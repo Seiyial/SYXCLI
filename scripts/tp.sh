@@ -15,7 +15,8 @@ exit_script () {
 
 get_syxcli_dir () {
     SYXCLI_DIR="/Users/Seiyial/SYX/Apps/SYXCLI"
-    echo "Syxcli dir $SYXCLI_DIR"
+    # echo "Syxcli dir $SYXCLI_DIR"
+    echo ""
 }
 
 function git-recent-branch-switcher {
@@ -27,23 +28,32 @@ function git-recent-branch-switcher {
 
     # result=$(git for-each-ref --count="$num_results" --sort=-authordate:iso8601 refs/heads/ --format='%(color:yellow)%(HEAD) %(refname:short)')
 
-    # result="$(cat $SYXCLI_DIR/PROJECT_LIST)"
+    in_result="$(cat $SYXCLI_DIR/PROJECT_LIST)"
 
-    result="GGI::Users-Seiyial-SYX-WORKS-GGI-GoGiveApp-
-TYMFO::Users-Seiyial-SYX-WORKS-TYMFO-
-Zipline::Users-Seiyial-SYX-CORE-Zipline-
-MDS::Users-Seiyial-SYX-WORKS-MDS-
-SYXCLI::Users-Seiyial-SYX-Apps-SYXCLI-"
+    # echo $in_result
+
+#     in_result="GGI::Users/Seiyial/SYX/WORKS/GGI/GoGiveApp/
+# TYMFO::Users/Seiyial/SYX/WORKS/TYMFO/
+# Zipline::Users/Seiyial/SYX/CORE/Zipline/
+# MDS::Users/Seiyial/SYX/WORKS/MDS/
+# SYXCLI::Users/Seiyial/SYX/Apps/SYXCLI/"
+    result=${in_result//"/"/"-@slash@-"}
 
     # echo $result
     # clear
 
-    branch=$(menu "$result")
-    branch=$(extract_branch "$branch")
-    current_branch=$(git rev-parse --abbrev-ref HEAD)
-    if [[ $current_branch != $branch ]]; then
-        git checkout $branch
-    fi
+    local target=$(menu "$result")
+    # branch=$(extract_branch "$branch")
+    # current_branch=$(git rev-parse --abbrev-ref HEAD)
+    # if [[ $current_branch != $branch ]]; then
+    #     git checkout $branch
+    # fi
+    target=${target##*:::}
+
+    touch $SYXCLI_DIR/.dirto
+    echo $target > $SYXCLI_DIR/.dirto
+
+    tput cnorm
 }
 
 function extract_branch {
@@ -97,7 +107,8 @@ function menu {
                 echo -n "$highlight_color"
             fi
     
-            eval "echo ${options[i]}"
+            local text=${options[i]}
+            eval "echo ${text//"-@slash@-"/"/"}"
         done
 
         read -sn 1 key
@@ -138,6 +149,7 @@ function menu {
     echo "${options[current_pos]}"
 }
 
-get_syxcli_dir
 trap exit_script SIGINT SIGTERM
+get_syxcli_dir
 git-recent-branch-switcher $@
+clear

@@ -72,7 +72,7 @@ function menu {
     while ! $end
     do
 
-        for i in `seq 0 $(($num_options - 1))`
+        for i in `seq 0 $(($num_options - 1))` # for i in 0 1 2 3 4
         do
 
             echo -n "$normal_color"
