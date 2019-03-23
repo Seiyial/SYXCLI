@@ -4,8 +4,8 @@ A package of command line apps that seriously make your life easier :)
 Enable selectively, and customise them to fit your Dev life :)
 
 #### The Tools (they can be selectively enabled/disabled):
-**SYXCMD**: Easily handle your collection of personal scripts and aliases, and much more!
-**TP**: Teleport almost instantly to your current projects, anytime. Super customisable.
+- **SYXCMD**: Easily handle your collection of personal scripts and aliases, and much more!
+- **TP**: Teleport almost instantly to your current projects, anytime. Super customisable.
 
 ## Installation
 ```bash
@@ -71,7 +71,7 @@ Happy Teleporting!!
 
 Please feel free to fork this repo and/or create `issue`s and `pull request`s (using the master branch code) for possible improvements you have in mind 🙂
 
-Current task list
+#### Current task list
 
 - [x] Make `SYX TELEPORT` work
 - [ ] Beautify `SYX TELEPORT` (top priority)
