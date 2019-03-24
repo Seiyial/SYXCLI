@@ -1,7 +1,8 @@
 #!/bin/bash
 # set colors
-normal_color="`echo -e '\r\033[0;0m'`" # normal
-highlight_color="`echo -e '\r\033[1;7m'`" # reverse
+normal_color="`echo -e '\r   \033[0;0m'`" # normal
+# highlight_color="`echo -e '\r\033[1;7m'`" # reverse
+highlight_color=" >$(tput bold)"
 
 # keys
 up_arrow="`echo -e '\033[A'`" # arrow up
@@ -104,11 +105,13 @@ function menu {
 
             echo -n "$normal_color"
             if [[ $current_pos == $i ]]; then
-                echo -n "$highlight_color"
+                echo -ne "\b\b$highlight_color"
             fi
     
             local text=${options[i]}
-            eval "echo ${text//"-@slash@-"/"/"}"
+            display_text1=${text//"-@slash@-"/"/"}
+            display_text=${display_text1/":::"/" $(tput setaf 24)"}
+            eval 'echo "$(tput setaf 44)  $display_text  $(tput sgr0)         "'
         done
 
         read -sn 1 key

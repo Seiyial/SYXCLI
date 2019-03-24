@@ -1,5 +1,6 @@
 #!/bin/bash
-color(){
+
+color () {
     for c; do
         printf '\e[48;5;%dm%03d' $c $c
     done
@@ -11,4 +12,6 @@ color {0..15}
 for ((i=0;i<6;i++)); do
     color $(seq $((i*36+16)) $((i*36+51)))
 done
+
+echo "Hi"
 color {232..255}
