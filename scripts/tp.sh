@@ -152,6 +152,7 @@ function menu {
     echo "${options[current_pos]}"
 }
 
+clear
 trap exit_script SIGINT SIGTERM
 get_syxcli_dir
 git-recent-branch-switcher $@
