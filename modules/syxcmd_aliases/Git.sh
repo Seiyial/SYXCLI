@@ -12,6 +12,10 @@ alias gs='
 echo "  🎇 $(tput setaf 39 && tput bold) Repo Status" && tput sgr0 && tput setaf 39 && git status'
 alias gcc='
 echo "  🎑 $(tput setaf 39 && tput bold) Full Commit" && tput sgr0 && tput setaf 39 && git add . && git commit -m'
+
+alias gccx='git add . && tput setaf 39 && git commit'
+alias gcx='git commit'
+
 alias gcca='git commit --amend'
 alias cko='
 echo "  🌃 $(tput setaf 39 && tput bold) △  Checkout △" && tput sgr0 && tput setaf 39 && git checkout'
