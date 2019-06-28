@@ -54,7 +54,7 @@ syxcmd_use_scripts=true
 
 > Unlimited teleportation scrolls for your ingame character, just that it's the terminal and your project folders. But still :)
 
-- **BEFORE** you start using `SYX_TELEPORT`, copy `your_syxcli_folder/user_config/syxcli_core/templates/PROJECT_LIST` to `your_syxcli_folder/PROJECT_LIST`. Edit the file `your_syxcli_folder/PROJECT_LIST` to list your desired projects, adhering to the syntax.
+- **BEFORE** you start using `SYX_TELEPORT`, copy `your_syxcli_folder/user_config/syxcli_core/templates/PROJECT_LIST` to `your_syxcli_folder/user_config/syxteleport/PROJECT_LIST`. Edit the file `your_syxcli_folder/user_config/syxteleport/PROJECT_LIST` to list your desired projects, adhering to the syntax.
 - Set your settings in the setup or by opening `your_syxcli_folder/SYXCLI_SETTINGS` afterwards. Changes apply on your very next (`SYXCLI`-enabled) session :)
 
 ```bash

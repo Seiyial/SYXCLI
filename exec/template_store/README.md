@@ -1,0 +1,1 @@
+You won't need to edit items in this folder, only copy it out manually sometimes to set up SYXCLI.

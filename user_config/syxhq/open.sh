@@ -1,3 +1,0 @@
-# Open SYXHQ Script
-
-# case 

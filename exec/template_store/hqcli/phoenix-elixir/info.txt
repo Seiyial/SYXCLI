@@ -1,0 +1,7 @@
+HQCLI template for phoenix elixir app.
+You will specify the PORT and Project directory (absolute path).
+
+(cd $project_directory)
+Start: PORT=<port> MIX_ENV=prod elixir --detached -S mix phx.server
+Stop: kill -9 $(lsof -t -i:<port>)
+Console: MIX_ENV=prod iex -S mix

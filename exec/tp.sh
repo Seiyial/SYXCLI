@@ -20,7 +20,7 @@ get_syxcli_dir () {
     echo ""
 }
 
-function git-recent-branch-switcher {
+function syxcli_run_tp {
 
     num_results=20
     if [ "$1" ]; then
@@ -29,11 +29,11 @@ function git-recent-branch-switcher {
 
     # result=$(git for-each-ref --count="$num_results" --sort=-authordate:iso8601 refs/heads/ --format='%(color:yellow)%(HEAD) %(refname:short)')
 
-    in_result="$(cat $SYXCLI_DIR/PROJECT_LIST)"
+    in_result="$(cat $SYXCLI_DIR/user_config/syxteleport/PROJECT_LIST)"
 
     # echo $in_result
 
-#     in_result="GGI::Users/Seiyial/SYX/WORKS/GGI/GoGiveApp/
+# in_result="GGI::Users/Seiyial/SYX/WORKS/GGI/GoGiveApp/
 # TYMFO::Users/Seiyial/SYX/WORKS/TYMFO/
 # Zipline::Users/Seiyial/SYX/CORE/Zipline/
 # MDS::Users/Seiyial/SYX/WORKS/MDS/
@@ -155,5 +155,5 @@ function menu {
 clear
 trap exit_script SIGINT SIGTERM
 get_syxcli_dir
-git-recent-branch-switcher $@
+syxcli_run_tp $@
 clear
