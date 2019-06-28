@@ -2,7 +2,7 @@ syxcli_activate_cmd () {
 	# requires the setup functions complete, find them in util.sh and run them first.
 	# syxcli will run them before running this function
 	# requires:
-	# - syxcli_info function (modules/syxcli_core/util.sh)
+	# - syxcli_info function (user_config/syxcli_core/util.sh)
 	#   - SYXCLI_VERBOSE variable set (optional)
 	# - $SYXCLI_DIR variable set, pointing to the SYXCLI root directory
 
@@ -24,7 +24,7 @@ syxcli_cmd_aliases () {
 
 		[[ $SYXCLI_CLOVERS == "true" ]] && printf "\n"
 
-		for filename in $SYXCLI_DIR/modules/syxcmd_aliases/*.sh; do
+		for filename in $SYXCLI_DIR/user_config/syxcmd_aliases/*.sh; do
 			syxcli_info "Source $filename..."
 			source $filename
 			[[ $SYXCLI_VERBOSE == "true" ]] && printf " done"
@@ -42,8 +42,8 @@ syxcli_cmd_aliases () {
 syxcli_cmd_scripts () {
 	if [[ $syxcmd_use_scripts == "true" ]]
 	then
-		syxcli_info "(cmd.sh/scripts) detected \$syxcmd_use_scripts=true, add script path ($SYXCLI_DIR/modules/syxcmd_scripts) to PATH"
-		export PATH=$PATH:$SYXCLI_DIR/modules/syxcmd_scripts
+		syxcli_info "(cmd.sh/scripts) detected \$syxcmd_use_scripts=true, add script path ($SYXCLI_DIR/user_config/syxcmd_scripts) to PATH"
+		export PATH=$PATH:$SYXCLI_DIR/user_config/syxcmd_scripts
 		syxcli_info "(cmd.sh/scripts) done appending PATH"
 	fi
 }

@@ -18,7 +18,7 @@ $ ~/.SYXCLI/bin/syxcli
 # See below for configuring your SETTINGS to your SYXCLI liking :)
 ```
 
-## Enabling of Modules
+## Enabling of user_config
 
 #### Global
 
@@ -31,7 +31,7 @@ Choose the one that fits you best!
 
 #### Tool #1: `SYXCMD`
 
-- Easily handle your collection of personal scripts and aliases by keeping them within `syxcli/modules/syxcmd_scripts` and `syxcli/modules/syxcmd_aliases`.
+- Easily handle your collection of personal scripts and aliases by keeping them within `syxcli/user_config/syxcmd_scripts` and `syxcli/user_config/syxcmd_aliases`.
 - `scripts` folder will be in the `PATH`. (optional)
 - `aliases` folder will be `source`d. (optional)
 - Set your settings in the setup or by opening `your_syxcli_folder/SYXCLI_SETTINGS` afterwards. Changes apply on your very next (`SYXCLI`-enabled) session :)
@@ -46,7 +46,7 @@ syxcmd_use_aliases=true
 # "" (blank): all files in aliases folder will NOT be sourced.
 
 syxcmd_use_scripts=true
-# true: the scripts folder (SYXCLI/modules/syxcmd_scripts)
+# true: the scripts folder (SYXCLI/user_config/syxcmd_scripts)
 # "" (blank): scripts folder will be in the PATH.
 ```
 
@@ -54,7 +54,7 @@ syxcmd_use_scripts=true
 
 > Unlimited teleportation scrolls for your ingame character, just that it's the terminal and your project folders. But still :)
 
-- **BEFORE** you start using `SYX_TELEPORT`, copy `your_syxcli_folder/modules/syxcli_core/templates/PROJECT_LIST` to `your_syxcli_folder/PROJECT_LIST`. Edit the file `your_syxcli_folder/PROJECT_LIST` to list your desired projects, adhering to the syntax.
+- **BEFORE** you start using `SYX_TELEPORT`, copy `your_syxcli_folder/user_config/syxcli_core/templates/PROJECT_LIST` to `your_syxcli_folder/PROJECT_LIST`. Edit the file `your_syxcli_folder/PROJECT_LIST` to list your desired projects, adhering to the syntax.
 - Set your settings in the setup or by opening `your_syxcli_folder/SYXCLI_SETTINGS` afterwards. Changes apply on your very next (`SYXCLI`-enabled) session :)
 
 ```bash

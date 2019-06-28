@@ -51,7 +51,7 @@ syxcli_help_create_settings_if_need () {
 syxcli_do_new_settings_setup () {
 	syxcli_info "Generate new Settings file"
 	touch $SYXCLI_DIR/SYXCLI_SETTINGS
-	cat $SYXCLI_DIR/modules/syxcli_core/templates/SYXCLI_SETTINGS.template > $SYXCLI_DIR/SYXCLI_SETTINGS
+	cat $SYXCLI_DIR/user_config/syxcli_core/templates/SYXCLI_SETTINGS.template > $SYXCLI_DIR/SYXCLI_SETTINGS
 
 	printf "\nEdit the SYXCLI_SETTINGS file now? Uses vim and we'll proceed after you close the editor. Alternatively, exit the script, edit the ./SYXCLI_SETTINGS and try again.\n        (y/N/exit)\n  >> ✡  "
 

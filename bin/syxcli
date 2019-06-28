@@ -126,17 +126,17 @@ fi
 
 case "$SYXCLI_START_TASK" in
 	"autorun")
-		source $SYXCLI_DIR/scripts/settings.sh
-		source $SYXCLI_DIR/scripts/cmd.sh
-		source $SYXCLI_DIR/scripts/dirtool.sh
+		source $SYXCLI_DIR/exec/settings.sh
+		source $SYXCLI_DIR/exec/cmd.sh
+		source $SYXCLI_DIR/exec/dirtool.sh
 		syxcli_check_settings_exist
 		syxcli_source_settings_if_exist
 		syxcli_activate_cmd
 		syxcli_activate_dlink
 		;;
 	"setup")
-		source $SYXCLI_DIR/scripts/settings.sh
-		source $SYXCLI_DIR/scripts/installer.sh
+		source $SYXCLI_DIR/exec/settings.sh
+		source $SYXCLI_DIR/exec/installer.sh
 		syxcli_check_settings_exist
 		syxcli_help_create_settings_if_need
 		syxcli_install_choice=""
