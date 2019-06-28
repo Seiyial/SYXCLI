@@ -3,7 +3,10 @@
 A package of command line apps that seriously make your life easier :)
 Enable selectively, and customise them to fit your Dev life :)
 
-#### The Tools (they can be selectively enabled/disabled):
+## The Tools
+
+They can be selectively enabled/disabled.
+
 - **SYXCMD**: Easily handle your collection of personal scripts and aliases, and much more!
 - **TP**: Teleport almost instantly to your current projects, anytime. Super customisable.
 
