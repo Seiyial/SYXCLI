@@ -14,6 +14,10 @@ alias ys='tput setaf 75 && clear && echo "==================================
     💧  yarn start 💧
 ==================================" && yarn start'
 
+alias yd='tput setaf 75 && clear && echo "==================================       
+    💧  yarn dev 💧
+==================================" && yarn dev'
+
 alias yt='tput setaf 75 && clear && echo "==================================       
     💧  yarn test 💧
 ==================================" && yarn test'
@@ -36,7 +40,7 @@ alias yyga='tput setaf 75 && clear && echo "==================================
     💧  yarn global add 💧
 ==================================" && yarn global add'
 
-alias yyda='tput setaf 75 && clear && echo "==================================       
+alias yyad='tput setaf 75 && clear && echo "==================================       
     💧  yarn add --dev 💧
 ==================================" && yarn add --dev'
 

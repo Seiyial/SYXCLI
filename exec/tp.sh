@@ -83,8 +83,8 @@ function menu {
     function go_down() {
         current_pos=$(( current_pos + 1 ))
         if [[ $current_pos == $(( num_options )) ]]; then
-               current_pos=0
-          fi
+            current_pos=0
+        fi
     }
 
     # figure out starting index
@@ -113,6 +113,8 @@ function menu {
             display_text=${display_text1/":::"/" $(tput setaf 24)"}
             eval 'echo "$(tput setaf 44)  $display_text  $(tput sgr0)         "'
         done
+
+        
 
         read -sn 1 key
         if [[ "$key" == "$ec" ]]; then
