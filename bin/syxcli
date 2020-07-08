@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo $SYXCLI_DIR
+
 # Debug function is most necessary, thus goes first
 syxcli_info () {
 	[[ -z $SYXCLI_VERBOSE ]] || echo "<ЖCLI> $1"
