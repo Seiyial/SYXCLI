@@ -1,49 +1,27 @@
-alias nodeg='tput setaf 75 && clear && echo "    💧  yarn global node 💧
-" && cd ~/.config/yarn/global/node_modules && node'
+function syxalias {
+	# tput setaf 238 &&
+	tput setaf 23 &&
+	echo ":: $@" &&
+	tput setaf 245 &&
+	$@
+}
+function syxaliascolour {
+	tput setaf 23
+}
+function syxaliascolourafter {
+	tput setaf 245
+}
 
-alias yy='tput setaf 75 && clear && echo "==================================       
-    💧  yarn run 💧
-==================================
-" && yarn run'
+alias nodeg='echo "$(syxaliascolour) >> Global NodeJS$(syxaliascolourafter)" && cd ~/.config/yarn/global/node_modules && node'
 
-alias yi='tput setaf 75 && clear && echo "==================================       
-    💧  yarn install 💧
-==================================" && yarn install'
-
-alias ys='tput setaf 75 && clear && echo "==================================       
-    💧  yarn start 💧
-==================================" && yarn start'
-
-alias yd='tput setaf 75 && clear && echo "==================================       
-    💧  yarn dev 💧
-==================================" && yarn dev'
-
-alias yt='tput setaf 75 && clear && echo "==================================       
-    💧  yarn test 💧
-==================================" && yarn test'
-
-alias yys='tput setaf 75 && clear && echo "==================================       
-    💧  yarn start 💧
-==================================" && yarn start'
-
-alias yis='tput setaf 75 && clear && echo "==================================       
-    💧  yarn install 💧
-==================================" && yarn install && tput setaf 75 && clear && echo "==================================       
-    💧  yarn start 💧
-==================================" && yarn start'
-
-alias yya='tput setaf 75 && clear && echo "==================================       
-    💧  yarn add 💧
-==================================" && yarn add'
-
-alias yyga='tput setaf 75 && clear && echo "==================================       
-    💧  yarn global add 💧
-==================================" && yarn global add'
-
-alias yyad='tput setaf 75 && clear && echo "==================================       
-    💧  yarn add --dev 💧
-==================================" && yarn add --dev'
-
-alias yyr='tput setaf 75 && clear && echo "==================================       
-    💧  yarn remove 💧
-==================================" && yarn remove'
+alias yr='syxalias yarn run $@'
+alias yi='syxalias yarn install'
+alias ys='syxalias yarn start'
+alias yd='syxalias yarn dev'
+alias yt='syxalias yarn test'
+alias yis='syxalias yarn install && yarn start'
+alias yya='syxalias yarn add $@'
+alias yyga='syxalias yarn global add $@'
+alias yyad='syxalias yarn add --dev $@'
+alias yyr='syxalias yarn remove $@'
+alias yr='syxalias yarn remove $@'
