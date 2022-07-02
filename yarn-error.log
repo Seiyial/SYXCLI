@@ -1,0 +1,36 @@
+Arguments: 
+  /Users/seiyial/.nvm/versions/node/v16.9.1/bin/node /Users/seiyial/.yarn/bin/yarn.js add --dev @types/ node react
+
+PATH: 
+  /Users/seiyial/.rbenv/shims:/Users/seiyial/.kiex/elixirs/elixir-1.9.4/bin:/Users/seiyial/.kiex/bin:/Users/seiyial/.pyenv/bin:/Users/seiyial/.yarn/bin:/Users/seiyial/.config/yarn/global/node_modules/.bin:/Users/seiyial/.nvm/versions/node/v16.9.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Users/seiyial/.rbenv/shims:/Users/seiyial/.kiex/elixirs/elixir-1.9.4/bin:/Users/seiyial/.kiex/bin:/Users/seiyial/.pyenv/bin:/Users/seiyial/.yarn/bin:/Users/seiyial/.config/yarn/global/node_modules/.bin:/Users/seiyial/.nvm/versions/node/v16.9.1/bin:/Users/seiyial/.cargo/bin:/Users/seiyial/SYX/Apps/SYXCLI/user_config/syxcmd_scripts:/Users/seiyial/SYX/Apps/flutter/bin:/Users/seiyial/SYX/Apps/flutter/.pub-cache/bin:/Users/seiyial/SYX/Apps/SYXCLI/user_config/syxcmd_scripts:/Users/seiyial/SYX/Apps/flutter/bin:/Users/seiyial/SYX/Apps/flutter/.pub-cache/bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  16.9.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@types%2f: Request "https://registry.yarnpkg.com/@types%2f" returned a 405
+      at Request.params.callback [as _callback] (/Users/seiyial/.yarn/lib/cli.js:66997:18)
+      at Request.self.callback (/Users/seiyial/.yarn/lib/cli.js:140749:22)
+      at Request.emit (node:events:394:28)
+      at Request.<anonymous> (/Users/seiyial/.yarn/lib/cli.js:141721:10)
+      at Request.emit (node:events:394:28)
+      at IncomingMessage.<anonymous> (/Users/seiyial/.yarn/lib/cli.js:141643:12)
+      at Object.onceWrapper (node:events:513:28)
+      at IncomingMessage.emit (node:events:406:35)
+      at endReadableNT (node:internal/streams/readable:1343:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

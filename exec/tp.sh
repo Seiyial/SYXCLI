@@ -15,7 +15,6 @@ exit_script () {
 }
 
 get_syxcli_dir () {
-    SYXCLI_DIR="/Users/Seiyial/IEMENS/--Ext/SYXCLI"
     # echo "Syxcli dir $SYXCLI_DIR"
     echo ""
 }

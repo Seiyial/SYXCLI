@@ -15,7 +15,7 @@ function syxaliascolourafter {
 # Pulling
 alias gpo='syxalias git pull origin'
 alias gpod='syxalias git checkout dev && git pull origin dev'
-alias gpom='syxalias git checkout master && git pull origin master'
+alias gpom='syxalias git checkout main && git pull origin main'
 alias gpos='syxalias git checkout staging && git pull origin staging'
 alias gs='syxalias git status'
 function gcc {
