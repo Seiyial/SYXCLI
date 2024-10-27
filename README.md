@@ -1,7 +1,7 @@
 <h1 style="color: darkcyan">SYX Command Line Tools (<code>SYXCLI</code>)</h1>
 
-A package of command line apps that seriously make your life easier :)
-Enable selectively, and customise them to fit your Dev life :)
+A package of command line apps that seriously make your life easier.
+Enable selectively, and customise them to fit your Dev life.
 
 ## The Tools
 
